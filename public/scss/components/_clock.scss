@@ -5,3 +5,24 @@
 	border-radius: 50%;
     box-shadow: inset 0 1vmin 2vmin rgba($mainColor, 0.4);
 }
+
+.marker {
+    width: 0.4vmin;
+    height: 6vmin;
+	position: absolute;
+	top: 90%;
+	left: 50%;
+	border-radius: 1vmin;
+	background-color: $mainColor;
+	transform-origin: center -36vmin;
+
+	&:nth-child(3n+3) {
+	    width: 0.8vmin;
+	}
+}
+
+@for $j from 0 through 11 {
+	.marker-#{$j} {
+	    transform: rotate(#{$j*30deg});
+	}
+}
