@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .face {
 	width: 90vmin;
 	height: 90vmin;
@@ -24,5 +26,40 @@
 @for $j from 0 through 11 {
 	.marker-#{$j} {
 	    transform: rotate(#{$j*30deg});
+	}
+}
+
+.hand {
+	width: 1.5vmin;
+	height: 40vmin;
+	position: absolute;
+	bottom: 50%;
+	left: 50%;
+	border-radius: 1vmin;
+	background-color: $mainColor;
+	transform-origin: bottom center;
+
+	&.h {
+	    height: 25vmin;
+	    animation: tick $timeScale*60*60*12s infinite linear;
+	}
+
+	&.m {
+	    height: 35vmin;
+	    animation: tick $timeScale*60*60s infinite cubic-bezier(1,-0.5,.5,1.50);
+	}
+
+	&.s {
+	    width: 1vmin;
+	    height: 40vmin;
+	    animation: tick $timeScale*60s infinite cubic-bezier(1,-0.5,.5,1.50);
+	}
+}
+
+@keyframes tick {
+	@for $i from 0 through 60 {
+	    #{percentage(math.div($i, 60))} {
+	        transform: rotate($i*6deg);
+	    }
 	}
 }
